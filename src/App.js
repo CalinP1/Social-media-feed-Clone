@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import  {About}  from './About';
-import { Favorites } from './Favorites';
+import {About} from './About';
+import {Favorites} from './Favorites';
 import  SharedLayout  from './SharedLayout';
 import  Error  from './Error';
 import  Homepage  from './Homepage';
+import './App.css';
 function App() {
   return (
     <BrowserRouter>

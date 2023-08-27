@@ -6,7 +6,7 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
     <div className="profile-card">
       <img src={picture} alt={name} className="profile-image" />
       <p className="profile-name">{name}</p>
-      <img src={catImageUrl} alt="Cat" className="cat-image" />
+      <img src={catImageUrl} alt="Cat" className="cat-image img-fluid" />
     </div>
   );
 };
