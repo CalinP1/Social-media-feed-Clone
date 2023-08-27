@@ -1,15 +1,10 @@
 .profiles-page {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+
+    gap: 50px;
   }
-  
+
   .profile-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
   }

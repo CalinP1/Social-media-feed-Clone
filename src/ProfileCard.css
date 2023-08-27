@@ -1,11 +1,12 @@
 .profile-card {
     border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     text-align: center;
     width: 80%; 
     margin: 10px;
+    background-color:#e3ece3;
   }
   
   .profile-image {
@@ -20,10 +21,6 @@
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
-  }
-  
-  .profile-description {
-    font-size: 14px;
-    margin-top: 5px;
+
   }
   

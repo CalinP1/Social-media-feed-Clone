@@ -17,7 +17,7 @@ const ProfilesPage = () => {
   const fetchProfiles = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://randomuser.me/api/?page=${page}&results=${page === 1 ? 10 : 5}`);
+      const response = await fetch(`https://randomuser.me/api/?page=${page}&results=${page === 1 ? 8 : 2}`);
       const data = await response.json();
 
       setProfiles((prevProfiles) => [...prevProfiles, ...data.results]);
@@ -94,7 +94,7 @@ const ProfilesPage = () => {
   }, [profiles]);
 
   return (
-    <div className="profiles-page">
+    <div className="profiles-page d-flex flex-wrap justify-content-center py-4 ">
       {profiles.map((profile, index) => {
         const savedData = loadProfileData(index);
         const name = savedData ? savedData.name : `${profile.name.first} ${profile.name.last}`;
@@ -108,7 +108,7 @@ const ProfilesPage = () => {
         }
 
         return (
-          <ProfileCard
+          <ProfileCard className="profile-card"
             key={index}
             name={name}
             picture={picture}
