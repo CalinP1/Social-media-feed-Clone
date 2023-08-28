@@ -1,26 +1,77 @@
+/* ProfileCard.css */
 .profile-card {
-    border: 1px solid #ccc;
-    border-radius: 30px;
-    padding: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    text-align: center;
-    width: 80%; 
-    margin: 10px;
-    background-color:#e3ece3;
-  }
-  
-  .profile-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-  
-  .profile-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  width: 80%;
+  margin: 10px;
+  background-color: #e3ece3;
+}
 
-  }
-  
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.comment-button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-button:hover {
+  background-color: #1565c0;
+}
+
+.comment-section {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.submit-comment-button {
+  margin-top: 5px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-comment-button:hover {
+  background-color: #45a049;
+}
+
+.delete-comment-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #e74c3c;
+  font-size: 18px;
+  margin-left: 5px;
+}

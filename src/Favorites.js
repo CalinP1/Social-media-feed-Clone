@@ -5,4 +5,3 @@ import React from 'react'
     <div>Favorites</div>
   )
 }
-
