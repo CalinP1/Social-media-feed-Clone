@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PetsIcon from '@mui/icons-material/Pets';
 import InfoIcon from '@mui/icons-material/Info';
 import './Navbar.css';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 const Navbar = () => {

@@ -12,7 +12,7 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
   const [isCommenting, setIsCommenting] = useState(false);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState(loadComments());
-  const [isFavorite, setIsFavorite] = useState(false); // Adăugați această linie
+  const [isFavorite, setIsFavorite] = useState(false); 
 
   const handleCommentClick = () => {
     setIsCommenting(!isCommenting);
@@ -50,7 +50,7 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
     localStorage.setItem('comments', JSON.stringify(commentsData));
     setComments(updatedComments);
   };
-  
+
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
     saveFavoriteStatus(!isFavorite);

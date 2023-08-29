@@ -4,7 +4,7 @@ import {Profile} from './Profile';
 import  SharedLayout  from './SharedLayout';
 import  Error  from './Error';
 import  Homepage  from './Homepage';
-import './App.css';
+
 function App() {
   return (
     <BrowserRouter>
