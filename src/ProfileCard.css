@@ -25,7 +25,7 @@
 }
 
 .comment-button {
-  background-color: #1976d2;
+  background-color: #224c75;
   color: white;
   border: none;
   border-radius: 5px;
@@ -35,7 +35,7 @@
 }
 
 .comment-button:hover {
-  background-color: #1565c0;
+  background-color: #295239;
 }
 
 .comment-section {
@@ -63,7 +63,7 @@
 }
 
 .submit-comment-button:hover {
-  background-color: #45a049;
+  background-color: #2f6b32;
 }
 
 .delete-comment-button {
@@ -75,3 +75,8 @@
   font-size: 18px;
   margin-left: 5px;
 }
+
+.favorite-icon.active {
+  color: red;
+}
+

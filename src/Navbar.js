@@ -4,7 +4,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import InfoIcon from '@mui/icons-material/Info';
 import './Navbar.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 const Navbar = () => {
   return (
@@ -19,13 +19,12 @@ const Navbar = () => {
         </div>
       <div className="dropdown">
         <button className="btn background-color-dropdown dropdown-toggle position-static px-2" type="button" id="dropstartMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-          <FavoriteIcon className='dropdown-color' fontSize="medium"/>
-          <InfoIcon className='dropdown-color' fontSize="medium"/>
-          <LockOpenIcon className='dropdown-color' fontSize="medium"/>
+          <AccountBoxIcon className='dropdown-color' fontSize="large"/>
+          <InfoIcon className='dropdown-color' fontSize="large"/>
         </button>
         <ul className="dropdown-menu dropdown-menu-end dropdown-background text-center " aria-labelledby="dropstartMenuButton">
-          <li><Link to='about' className='btn fw-bold text-dark'>ABOUT</Link></li>
-          <li><Link to='favorites' className='btn fw-bold text-dark'>FAVORITES</Link></li>
+          <li><Link to='profile' className='btn fw-bold text-dark px-2'>PROFILE</Link></li>
+          <li><Link to='about' className='btn fw-bold text-dark '>ABOUT</Link></li>
         </ul>
       </div>
     </nav>
