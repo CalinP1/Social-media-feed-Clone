@@ -116,8 +116,6 @@ const ProfilesPage = () => {
           />
         );
       })}
-      {loading && <p>Loading...</p>}
-      {loadingMore && <p>Loading more...</p>}
     </div>
   );
 };

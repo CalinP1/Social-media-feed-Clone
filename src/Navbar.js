@@ -14,7 +14,7 @@ const Navbar = () => {
         </Link>
         </div>
         <div className='site-name'>
-        <span to='/' className='fs-2 fw-bold text-light'><em>OurSpace</em></span>
+        <span className='fs-2 fw-bold text-light'><em>OurSpace</em></span>
         </div>
       <div className="dropdown">
         <button className="btn background-color-dropdown dropdown-toggle position-static px-2" type="button" id="dropstartMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
