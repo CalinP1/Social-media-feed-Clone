@@ -14,11 +14,9 @@
 }
 
 .profile-card {
-  text-align: center;
-  padding: 20px;
   background-color: #e3ece3;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
 }
 
 .profile-avatar {

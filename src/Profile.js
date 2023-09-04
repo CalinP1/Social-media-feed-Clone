@@ -27,12 +27,12 @@ export const Profile = () => {
 
   const handleCreateProfile = () => {
     if (!firstName || !lastName || !imageLink) {
-      setEmailError('Toate câmpurile trebuie completate.');
+      setEmailError('All fields must be completed.');
       return;
     }
   
     if (!validateEmail(email)) {
-      setEmailError('Email invalid.');
+      setEmailError('Invalid Email.');
       return;
     }
   
@@ -59,8 +59,8 @@ export const Profile = () => {
   };
 
   return (
-    <div className="container my-5 px-5">
-      <div className="row justify-content-center">
+    <div className="container my-5 px-3">
+      <div className="row d-flex justify-content-center">
         <div className="col-md-6">
           {showForm && (
             <div className="profile-form">
@@ -104,7 +104,7 @@ export const Profile = () => {
             </div>
           )}
           {!showForm && (
-            <div className="profile-card justify-content-center m-5">
+            <div className="profile-card justify-content-center m-4">
               <img src={imageLink} alt="Profile Avatar" className="profile-avatar" />
               <h2>{firstName} {lastName}</h2>
               <p>Email: {email}</p>
