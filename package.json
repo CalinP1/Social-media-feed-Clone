@@ -2,7 +2,6 @@
   "name": "social-media-feed",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://{CalinP1}.github.io/{Social-media-feed-Clone}",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -46,5 +45,7 @@
   },
   "devDependencies": {
     "gh-pages": "^6.0.0"
-  }
+  },
+
+  "homepage": "http://CalinP1.github.io/{Social-media-feed-Clone}"
 }
