@@ -19,7 +19,7 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
     if (isProfileCreated) {
       setIsCommenting(!isCommenting);
     } else {
-      alert('Pentru a lăsa un comentariu, trebuie să îți creezi un cont și să-l activezi.');
+      alert('To leave a comment, you are required to create an account.');
     }
   };
 
@@ -61,7 +61,7 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
       setIsFavorite(!isFavorite);
       saveFavoriteStatus(!isFavorite);
     } else {
-      alert('Pentru a lăsa un like, trebuie să îți creezi un cont.');
+      alert('To leave a like, you are required to create an account.');
     }
   };
 

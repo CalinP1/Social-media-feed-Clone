@@ -104,7 +104,7 @@ export const Profile = () => {
             </div>
           )}
           {!showForm && (
-            <div className="profile-card">
+            <div className="profile-card justify-content-center m-5">
               <img src={imageLink} alt="Profile Avatar" className="profile-avatar" />
               <h2>{firstName} {lastName}</h2>
               <p>Email: {email}</p>
