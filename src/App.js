@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import {About} from './About';
 import {Profile} from './Profile';
 import  SharedLayout  from './SharedLayout';
 import  Error  from './Error';
@@ -11,7 +10,6 @@ function App() {
       <Routes>
         <Route path='/' element={<SharedLayout />}>
           <Route index element={<Homepage />} />
-          <Route path='about' element={<About />} />
           <Route path='profile' element={<Profile />} />
           <Route path='*' element={<Error />} />
         </Route>

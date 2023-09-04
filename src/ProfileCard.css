@@ -1,7 +1,7 @@
 .profile-card {
   border-radius: 30px;
   padding: 40px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
   text-align: center;
   width: 80%;
   margin: 10px;
@@ -78,3 +78,7 @@
   color: red;
 }
 
+.no-bullet-list{
+  list-style: none;
+  padding-left: 0;
+}

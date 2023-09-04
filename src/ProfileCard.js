@@ -12,10 +12,15 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
   const [isCommenting, setIsCommenting] = useState(false);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState(loadComments());
-  const [isFavorite, setIsFavorite] = useState(false); 
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isProfileCreated, setIsProfileCreated] = useState(false);
 
   const handleCommentClick = () => {
-    setIsCommenting(!isCommenting);
+    if (isProfileCreated) {
+      setIsCommenting(!isCommenting);
+    } else {
+      alert('Pentru a lăsa un comentariu, trebuie să îți creezi un cont și să-l activezi.');
+    }
   };
 
   const handleCommentChange = (event) => {
@@ -52,8 +57,12 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
   };
 
   const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-    saveFavoriteStatus(!isFavorite);
+    if (isProfileCreated) {
+      setIsFavorite(!isFavorite);
+      saveFavoriteStatus(!isFavorite);
+    } else {
+      alert('Pentru a lăsa un like, trebuie să îți creezi un cont.');
+    }
   };
 
   const saveFavoriteStatus = (status) => {
@@ -65,6 +74,9 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
   useEffect(() => {
     const favoriteStatus = JSON.parse(localStorage.getItem('favoriteStatus')) || {};
     setIsFavorite(favoriteStatus[name] || false);
+
+    const storedProfile = JSON.parse(localStorage.getItem('profile')) || {};
+    setIsProfileCreated(!!storedProfile.firstName);
   }, []);
 
   return (
@@ -74,17 +86,19 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
         <p className="profile-name py-1">{name}</p>
         <img src={catImageUrl} alt="Cat" className="cat-image img-fluid py-4" />
       </div>
-      
+
       <div className="like-share-comment-section d-flex justify-content-around py-5">
         <FavoriteIcon
           fontSize='large'
           className={`favorite-icon ${isFavorite ? 'active' : ''}`}
           onClick={handleFavoriteClick}
         />
+
         <button className="comment-button" onClick={handleCommentClick}>
           {isCommenting ? 'Cancel' : 'Comment'}
         </button>
       </div>
+
       {isCommenting && (
         <div className="comment-section">
           <textarea
@@ -98,10 +112,11 @@ const ProfileCard = ({ name, picture, catImageUrl }) => {
           </button>
         </div>
       )}
+
       {comments.length > 0 && (
         <div className="comments-container">
           <h3>Comments:</h3>
-          <ul className="comments-list">
+          <ul className="comments-list no-bullet-list">
             {comments.map((comment, index) => (
               <li key={index} className="comment-item">
                 {comment}

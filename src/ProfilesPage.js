@@ -30,7 +30,7 @@ const ProfilesPage = () => {
 
   const fetchCatImage = async () => {
     try {
-      const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=100');
+      const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
       const data = await response.json();
       const newCatImageUrls = data.map((item) => item.url);
       setCatImageUrls(newCatImageUrls);
@@ -94,28 +94,40 @@ const ProfilesPage = () => {
   }, [profiles]);
 
   return (
-    <div className="profiles-page d-flex flex-wrap justify-content-center py-4 ">
-      {profiles.map((profile, index) => {
-        const savedData = loadProfileData(index);
-        const name = savedData ? savedData.name : `${profile.name.first} ${profile.name.last}`;
-        const picture = savedData ? savedData.picture : profile.picture.large;
-        const catImageUrl = savedData
-          ? savedData.catImageUrl
-          : catImageUrls[index % catImageUrls.length];
+    <div className="container">
+      <div className="row">
+        <div className="col-md-3">
+          {/* Empty left col */}
+        </div>
+        <div className="col-md-6">
+          <div className="profiles-page d-flex flex-wrap justify-content-center py-4">
+            {profiles.map((profile, index) => {
+              const savedData = loadProfileData(index);
+              const name = savedData ? savedData.name : `${profile.name.first} ${profile.name.last}`;
+              const picture = savedData ? savedData.picture : profile.picture.large;
+              const catImageUrl = savedData
+                ? savedData.catImageUrl
+                : catImageUrls[index % catImageUrls.length];
 
-        if (!savedData) {
-          saveProfileData(index, name, picture, catImageUrl);
-        }
+              if (!savedData) {
+                saveProfileData(index, name, picture, catImageUrl);
+              }
 
-        return (
-          <ProfileCard className="profile-card"
-            key={index}
-            name={name}
-            picture={picture}
-            catImageUrl={catImageUrl}
-          />
-        );
-      })}
+              return (
+                <ProfileCard className="profile-card"
+                  key={index}
+                  name={name}
+                  picture={picture}
+                  catImageUrl={catImageUrl}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <div className="col-md-3">
+          {/* Empty right col */}
+        </div>
+      </div>
     </div>
   );
 };
