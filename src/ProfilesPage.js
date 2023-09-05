@@ -5,19 +5,9 @@ import './ProfilesPage.css';
 const ProfilesPage = () => {
   const [page, setPage] = useState(1);
   const [profiles, setProfiles] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(false);
   const [catImageUrls, setCatImageUrls] = useState([]);
   const [loadingMore, setLoadingMore] = useState(false);
-
-
-  useEffect(() => {
-    fetchCatImage()
-      .then(() => setLoading(false)) 
-      .catch((error) => {
-        console.error('Error fetching cat images:', error);
-        setLoading(false); 
-      });
-  }, []);
 
   useEffect(() => {
     fetchProfiles();
@@ -47,7 +37,7 @@ const ProfilesPage = () => {
       const data = await response.json();
       const newCatImageUrls = data.map((item) => item.url);
       setCatImageUrls(newCatImageUrls);
-
+  
       localStorage.setItem('catImageUrls', JSON.stringify(newCatImageUrls));
     } catch (error) {
       console.error('Error fetching cat images:', error);
@@ -114,31 +104,27 @@ const ProfilesPage = () => {
         </div>
         <div className="col-md-6">
           <div className="profiles-page d-flex flex-wrap justify-content-center py-4">
-            {loading ? ( 
-              <p>Loading cat images...</p>
-            ) : (
-              profiles.map((profile, index) => {
-                const savedData = loadProfileData(index);
-                const name = savedData ? savedData.name : `${profile.name.first} ${profile.name.last}`;
-                const picture = savedData ? savedData.picture : profile.picture.large;
-                const catImageUrl = savedData
-                  ? savedData.catImageUrl
-                  : catImageUrls[index % catImageUrls.length];
+            {profiles.map((profile, index) => {
+              const savedData = loadProfileData(index);
+              const name = savedData ? savedData.name : `${profile.name.first} ${profile.name.last}`;
+              const picture = savedData ? savedData.picture : profile.picture.large;
+              const catImageUrl = savedData
+                ? savedData.catImageUrl
+                : catImageUrls[index % catImageUrls.length];
 
-                if (!savedData) {
-                  saveProfileData(index, name, picture, catImageUrl);
-                }
+              if (!savedData) {
+                saveProfileData(index, name, picture, catImageUrl);
+              }
 
-                return (
-                  <ProfileCard className="profile-card"
-                    key={index}
-                    name={name}
-                    picture={picture}
-                    catImageUrl={catImageUrl}
-                  />
-                );
-              })
-            )}
+              return (
+                <ProfileCard className="profile-card"
+                  key={index}
+                  name={name}
+                  picture={picture}
+                  catImageUrl={catImageUrl}
+                />
+              );
+            })}
           </div>
         </div>
         <div className="col-md-3">
