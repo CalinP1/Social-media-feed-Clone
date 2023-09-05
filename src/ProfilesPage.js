@@ -19,11 +19,10 @@ const ProfilesPage = () => {
       .catch((error) => {
         console.error('Error fetching cat images:', error);
       });
-  }, []); 
+  }, []);
 
   useEffect(() => {
     fetchProfiles();
-    loadCatImagesFromStorage();
   }, [page]);
 
   const fetchProfiles = async () => {
@@ -32,7 +31,16 @@ const ProfilesPage = () => {
       const response = await fetch(`https://randomuser.me/api/?page=${page}&results=${page === 1 ? 8 : 2}`);
       const data = await response.json();
 
-      setProfiles((prevProfiles) => [...prevProfiles, ...data.results]);
+      if (page === 1) {
+        const profilesWithCats = data.results.slice(0, 8).map((profile, index) => {
+          const catImageUrl = catImageUrls[index % catImageUrls.length];
+          return { ...profile, catImageUrl };
+        });
+        setProfiles(profilesWithCats);
+      } else {
+        setProfiles((prevProfiles) => [...prevProfiles, ...data.results]);
+        window.scrollTo(0, window.scrollY + 100);
+      }
       setLoading(false);
     } catch (error) {
       console.error('Error fetching profiles:', error);
@@ -115,14 +123,12 @@ const ProfilesPage = () => {
         </div>
         <div className="col-md-6">
           <div className="profiles-page d-flex flex-wrap justify-content-center py-4">
-            { (
+            {(
               profiles.map((profile, index) => {
                 const savedData = loadProfileData(index);
                 const name = savedData ? savedData.name : `${profile.name.first} ${profile.name.last}`;
                 const picture = savedData ? savedData.picture : profile.picture.large;
-                const catImageUrl = savedData
-                  ? savedData.catImageUrl
-                  : catImageUrls[index % catImageUrls.length];
+                const catImageUrl = savedData ? savedData.catImageUrl : profile.catImageUrl;
 
                 if (!savedData) {
                   saveProfileData(index, name, picture, catImageUrl);
