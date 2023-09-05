@@ -6,13 +6,13 @@ import  Homepage  from './Homepage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/'>
       <Routes>
         <Route path='/' element={<SharedLayout />}>
           <Route index element={<Homepage />} />
           <Route path='profile' element={<Profile />} />
-          <Route path='*' element={<Error />} />
         </Route>
+        <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
