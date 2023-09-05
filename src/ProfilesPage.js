@@ -10,6 +10,18 @@ const ProfilesPage = () => {
   const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
+    fetchCatImage()
+      .then((catImages) => {
+        setCatImageUrls(catImages);
+        setLoading(true);
+        fetchProfiles();
+      })
+      .catch((error) => {
+        console.error('Error fetching cat images:', error);
+      });
+  }, []);
+
+  useEffect(() => {
     fetchProfiles();
     loadCatImagesFromStorage();
   }, [page]);
@@ -35,12 +47,11 @@ const ProfilesPage = () => {
         throw new Error('Failed to fetch cat images');
       }
       const data = await response.json();
-      const newCatImageUrls = data.map((item) => item.url);
-      setCatImageUrls(newCatImageUrls);
-  
-      localStorage.setItem('catImageUrls', JSON.stringify(newCatImageUrls));
+      const catImageUrls = data.map((item) => item.url);
+      return catImageUrls;
     } catch (error) {
       console.error('Error fetching cat images:', error);
+      throw error;
     }
   };
 
