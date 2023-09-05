@@ -8,6 +8,7 @@ const ProfilesPage = () => {
   const [loading, setLoading] = useState(false);
   const [catImageUrls, setCatImageUrls] = useState([]);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [loadingImages, setLoadingImages] = useState(true);
 
   useEffect(() => {
     fetchProfiles();
@@ -31,6 +32,9 @@ const ProfilesPage = () => {
   const fetchCatImage = async () => {
     try {
       const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
+      if (!response.ok) {
+        throw new Error('Failed to fetch cat images');
+      }
       const data = await response.json();
       const newCatImageUrls = data.map((item) => item.url);
       setCatImageUrls(newCatImageUrls);
@@ -45,6 +49,7 @@ const ProfilesPage = () => {
     const storedCatImageUrls = localStorage.getItem('catImageUrls');
     if (storedCatImageUrls) {
       setCatImageUrls(JSON.parse(storedCatImageUrls));
+      setLoadingImages(false);
     } else {
       fetchCatImage();
     }
@@ -123,6 +128,7 @@ const ProfilesPage = () => {
               );
             })}
           </div>
+          {loadingImages && <p>Loading cat images...</p>}
         </div>
         <div className="col-md-3">
           {/* Empty right col */}
