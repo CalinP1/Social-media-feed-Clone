@@ -10,19 +10,8 @@ const ProfilesPage = () => {
   const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
-    fetchCatImage()
-      .then((catImages) => {
-        setCatImageUrls(catImages);
-        setLoading(true);
-        fetchProfiles();
-      })
-      .catch((error) => {
-        console.error('Error fetching cat images:', error);
-      });
-  }, []);
-
-  useEffect(() => {
     fetchProfiles();
+    loadCatImagesFromStorage();
   }, [page]);
 
   const fetchProfiles = async () => {
@@ -31,16 +20,7 @@ const ProfilesPage = () => {
       const response = await fetch(`https://randomuser.me/api/?page=${page}&results=${page === 1 ? 8 : 2}`);
       const data = await response.json();
 
-      if (page === 1) {
-        const profilesWithCats = data.results.slice(0, 8).map((profile, index) => {
-          const catImageUrl = catImageUrls[index % catImageUrls.length];
-          return { ...profile, catImageUrl };
-        });
-        setProfiles(profilesWithCats);
-      } else {
-        setProfiles((prevProfiles) => [...prevProfiles, ...data.results]);
-        window.scrollTo(0, window.scrollY + 100);
-      }
+      setProfiles((prevProfiles) => [...prevProfiles, ...data.results]);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching profiles:', error);
@@ -51,15 +31,13 @@ const ProfilesPage = () => {
   const fetchCatImage = async () => {
     try {
       const response = await fetch('https://api.thecatapi.com/v1/images/search?limit=10');
-      if (!response.ok) {
-        throw new Error('Failed to fetch cat images');
-      }
       const data = await response.json();
-      const catImageUrls = data.map((item) => item.url);
-      return catImageUrls;
+      const newCatImageUrls = data.map((item) => item.url);
+      setCatImageUrls(newCatImageUrls);
+
+      localStorage.setItem('catImageUrls', JSON.stringify(newCatImageUrls));
     } catch (error) {
       console.error('Error fetching cat images:', error);
-      throw error;
     }
   };
 
@@ -123,27 +101,27 @@ const ProfilesPage = () => {
         </div>
         <div className="col-md-6">
           <div className="profiles-page d-flex flex-wrap justify-content-center py-4">
-            {(
-              profiles.map((profile, index) => {
-                const savedData = loadProfileData(index);
-                const name = savedData ? savedData.name : `${profile.name.first} ${profile.name.last}`;
-                const picture = savedData ? savedData.picture : profile.picture.large;
-                const catImageUrl = savedData ? savedData.catImageUrl : profile.catImageUrl;
+            {profiles.map((profile, index) => {
+              const savedData = loadProfileData(index);
+              const name = savedData ? savedData.name : `${profile.name.first} ${profile.name.last}`;
+              const picture = savedData ? savedData.picture : profile.picture.large;
+              const catImageUrl = savedData
+                ? savedData.catImageUrl
+                : catImageUrls[index % catImageUrls.length];
 
-                if (!savedData) {
-                  saveProfileData(index, name, picture, catImageUrl);
-                }
+              if (!savedData) {
+                saveProfileData(index, name, picture, catImageUrl);
+              }
 
-                return (
-                  <ProfileCard className="profile-card"
-                    key={index}
-                    name={name}
-                    picture={picture}
-                    catImageUrl={catImageUrl}
-                  />
-                );
-              })
-            )}
+              return (
+                <ProfileCard className="profile-card"
+                  key={index}
+                  name={name}
+                  picture={picture}
+                  catImageUrl={catImageUrl}
+                />
+              );
+            })}
           </div>
         </div>
         <div className="col-md-3">
