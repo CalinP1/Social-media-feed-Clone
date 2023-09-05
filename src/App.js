@@ -6,7 +6,7 @@ import  Homepage  from './Homepage';
 
 function App() {
   return (
-    <BrowserRouter basename='/'>
+    <BrowserRouter basename='/Social-media-feed-Clone'>
       <Routes>
         <Route path='/' element={<SharedLayout />}>
           <Route index element={<Homepage />} />
